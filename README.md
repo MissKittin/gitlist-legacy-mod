@@ -18,6 +18,7 @@ Also, the GitList gorgeous interface was made possible due to [Bootstrap](http:/
 ## Modifications
 * Assets moved to public
 * README.md has priority
+* Added preload script
 
 ## Requirements
 In order to run GitList on your server, you'll need:
@@ -41,10 +42,17 @@ In order to run GitList on your server, you'll need:
 
 * Configure the webserver to point to the `/var/www/gitlist/public` directory as document root
 
+## Preloading
+Add to `php.ini` file in opcache section:
+```
+[opcache]
+opcache.preload=/var/www/gitlist/preload.php
+```
+
 ## PHP built-in web server
 ```
 cd /var/www/gitlist/public
-php -S 0.0.0.0:8080 index.php
+php -d opcache.preload=/var/www/gitlist/preload.php -S 0.0.0.0:8080 index.php
 ```
 
 ## Author
