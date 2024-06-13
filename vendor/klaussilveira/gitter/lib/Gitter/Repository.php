@@ -684,6 +684,7 @@ class Repository
     public function getPrettyFormat($command)
     {
         $output = $this->getClient()->run($this, $command);
+
         $format = new PrettyFormat();
 
         return $format->parse($output);
