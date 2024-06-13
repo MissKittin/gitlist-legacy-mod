@@ -1,5 +1,10 @@
 <?php
 
+if (substr($_SERVER['REQUEST_URI'], 0, 9) === '/avatars/' && ! file_exists(substr(strtok($_SERVER['REQUEST_URI'], '?'), 1))) {
+    require __DIR__'/public/avatars/default/index.php';
+    exit();
+}
+
 if (file_exists(substr(strtok($_SERVER['REQUEST_URI'], '?'), 1)) && basename($_SERVER['SCRIPT_NAME']) !== '.htaccess') {
     switch (pathinfo(strtok($_SERVER['REQUEST_URI'], '?'), PATHINFO_EXTENSION)) {
         case 'js':
