@@ -2,7 +2,6 @@
     Options -MultiViews +SymLinksIfOwnerMatch
 
     RewriteEngine On
-    #RewriteBase /path/to/gitlist/
 
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteCond %{REQUEST_FILENAME} !-d
