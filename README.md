@@ -23,6 +23,7 @@ Also, the GitList gorgeous interface was made possible due to [Bootstrap](http:/
 * Added assets cache for PHP CLI server
 * Added local avatar provider
 * Added dark theme
+* Added smaller tabs CSS tweak
 
 ## Requirements
 In order to run GitList on your server, you'll need:
