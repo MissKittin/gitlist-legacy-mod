@@ -9,10 +9,6 @@ if (!ini_get('date.timezone')) {
     date_default_timezone_set('UTC');
 }
 
-if (php_sapi_name() == 'cli-server' && file_exists(substr($_SERVER['REQUEST_URI'], 1))) {
-    return false;
-}
-
 chdir(__DIR__.'/..');
 
 require 'vendor/autoload.php';

@@ -19,6 +19,8 @@ Also, the GitList gorgeous interface was made possible due to [Bootstrap](http:/
 * Assets moved to public
 * README.md has priority
 * Added preload script
+* Added router script
+* Added assets cache for PHP CLI server
 
 ## Requirements
 In order to run GitList on your server, you'll need:
@@ -52,7 +54,7 @@ opcache.preload=/var/www/gitlist/preload.php
 ## PHP built-in web server
 ```
 cd /var/www/gitlist/public
-php -d opcache.preload=/var/www/gitlist/preload.php -S 0.0.0.0:8080 index.php
+php -d opcache.preload=/var/www/gitlist/preload.php -S 0.0.0.0:8080 ../router.php
 ```
 
 ## Author
