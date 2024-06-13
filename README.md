@@ -17,6 +17,7 @@ Also, the GitList gorgeous interface was made possible due to [Bootstrap](http:/
 
 ## Modifications
 * Assets moved to public
+* README.md has priority
 
 ## Requirements
 In order to run GitList on your server, you'll need:
