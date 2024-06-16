@@ -1,9 +1,12 @@
 body {
     tab-size: 4;
 }
-html, img {
-    -webkit-filter: invert(100%);
-    -moz-filter: invert(100%);
-    -o-filter: invert(100%);
-    -ms-filter: invert(100%);
+
+@media(prefers-color-scheme: dark) {
+    html, img {
+        -webkit-filter: invert(100%);
+        -moz-filter: invert(100%);
+        -o-filter: invert(100%);
+        -ms-filter: invert(100%);
+    }
 }
