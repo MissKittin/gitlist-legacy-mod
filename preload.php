@@ -24,8 +24,9 @@ foreach (new RegexIterator(
     opcache_compile_file($file[0]);
 }
 
-
-echo '[PRELOAD] '.__DIR__.'/boot.php'.PHP_EOL;
-opcache_compile_file(__DIR__.'/boot.php');
+if (php_sapi_name() === 'cli-server') {
+    echo '[PRELOAD] '.__DIR__.'/router.php'.PHP_EOL;
+    opcache_compile_file(__DIR__.'/router.php');
+}
 
 echo '[PRELOAD] Included files: '.count(get_included_files()).PHP_EOL;
