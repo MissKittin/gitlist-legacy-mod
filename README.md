@@ -24,7 +24,7 @@ Also, the GitList gorgeous interface was made possible due to [Bootstrap](http:/
 * Added local avatar provider
 * Added dark theme
 * Added smaller tabs CSS tweak
-* Hidden GitList version in themes
+* Hidden GitList version in themes and RSS
 
 ## Requirements
 In order to run GitList on your server, you'll need:
