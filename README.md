@@ -27,6 +27,10 @@ Also, the GitList gorgeous interface was made possible due to [Bootstrap](http:/
 * Hidden GitList version in themes and RSS
 * Extracted favicon
 
+## Original version
+If you want the original build, see the Initial commit (`d62df2a047a00eb187e4a03237eeb8dd24c3f8e1`)  
+and if you want the original source code, see branch `original`.
+
 ## Requirements
 In order to run GitList on your server, you'll need:
 * PHP 5.3+
@@ -34,44 +38,7 @@ In order to run GitList on your server, you'll need:
 * Webserver (Apache, nginx, lighttpd, PHP cli-server)
 
 ## Installation
-* Clone this repository to target directory:
-
-		git clone --depth 1 "https://github.com/MissKittin/gitlist-legacy-mod.git" /var/www/gitlist
-
-* Rename the `config.ini-example` file to `config.ini`.
-* Open up the `config.ini` and configure your installation. You'll have to provide where your repositories are located.
-* If you set `cache = true`, create the cache folder and give read/write permissions to your web server user:
-
-		cd /var/www/gitlist
-		mkdir cache
-		chgrp www-data cache
-		chmod 770 cache
-
-* Configure the webserver to point to the `/var/www/gitlist/public` directory as document root
-
-## Preloading
-Add to `php.ini` file in opcache section:
-```
-[opcache]
-opcache.preload=/var/www/gitlist/preload.php
-```
-
-## PHP built-in web server
-```
-cd /var/www/gitlist/public
-php -d opcache.preload=/var/www/gitlist/preload.php -S 0.0.0.0:8080 ../router.php
-```
-
-### Local avatar provider
-GitList uses Gravatar service by default to get avatar.  
-You can use a local avatar provider instead.  
-You need a square image in PNG format. Name it `original.png`  
-Resize `original.png` to `32x32` and `40x40` px. Name them `32.png` and `40.png` respectively and move to a new directory.  
-Run:
-```
-php /var/www/gitlist/bin/mkavatar.php "my-email@domain.com" ./new-directory
-```
-Set `url = '//gravatar.com/avatar/'` to `url = '/avatars/'` in `config.ini` (`[avatar]` section).
+See [INSTALL](INSTALL.md)
 
 ## Author
 * [Klaus Silveira](http://www.klaussilveira.com) (Creator, developer)
