@@ -62,21 +62,15 @@ cd /var/www/gitlist/public
 php -d opcache.preload=/var/www/gitlist/preload.php -S 0.0.0.0:8080 ../router.php
 ```
 
-## Local avatar provider
+### Local avatar provider
 GitList uses Gravatar service by default to get avatar.  
 You can use a local avatar provider instead.  
 You need a square image in PNG format. Name it `original.png`  
-Resize `original.png` to `32x32` and `40x40` px. Name them `32.png` and `40.png` respectively.
+Resize `original.png` to `32x32` and `40x40` px. Name them `32.png` and `40.png` respectively and move to a new directory.  
+Run:
 ```
-# create the hash (change my-email@domain.com)
-hash=$(printf "my-email@domain.com" | tr '[:upper:]' '[:lower:]' | md5sum | awk '{print $1}')
-
-# create avatar directory
-cd /var/www/gitlist/public/avatars
-mkdir $hash; cd $hash
-ln -s ../default/index.php index.php
+php /var/www/gitlist/bin/mkavatar.php "my-email@domain.com" ./new-directory
 ```
-Drop the `original.png`, `32.png` and `40.png` files into the newly created directory.  
 Set `url = '//gravatar.com/avatar/'` to `url = '/avatars/'` in `config.ini` (`[avatar]` section).
 
 ## Author
