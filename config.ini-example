@@ -13,7 +13,6 @@ strip_dot_git = false ; Remove usual bare repo .git extension from displayed nam
 ; hidden[] = '/home/git/repositories/BetaTest'
 
 [app]
-debug = false
 cache = false
 theme = "default"
 title = ""
