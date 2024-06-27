@@ -7,9 +7,26 @@
 {% block content %}
     {% include 'breadcrumb.twig' with {breadcrumbs: [{dir: "Commit #{commit.hash}", path:''}]} %}
 
+    <style>
+        .source-view .source-diff {
+            display: none;
+        }
+    </style>
+    <noscript>
+        <style>
+            .source-view .source-diff {
+                display: block;
+            }
+            #expand-diffs-button {
+                display: none;
+            }
+        </style>
+    </noscript>
+
     <div class="commit-view">
         <div class="commit-header">
-            <span class="pull-right"><a class="btn btn-small" href="{{ path('branch', {repo: repo, branch: commit.hash}) }}" title="Browse code at this point in history"><i class="icon-list-alt"></i> Browse code</a></span>
+            <span id="expand-diffs-button" class="pull-right"><a class="btn btn-small" onclick="for(var i of document.getElementsByClassName('source-diff')) i.style.display='block';"><i class="icon-list-alt"></i> Expand diffs</a></span>
+            <span style="margin-right: 5px;" class="pull-right"><a class="btn btn-small" href="{{ path('branch', {repo: repo, branch: commit.hash}) }}" title="Browse code at this point in history"><i class="icon-list-alt"></i> Browse code</a></span>
             <h4>{{ commit.message }}</h4>
         </div>
         <div class="commit-body">
@@ -36,7 +53,7 @@
     {% for diff in commit.diffs %}
     <div class="source-view">
         <div class="source-header">
-            <div class="meta"><a id="diff-{{ loop.index }}">{{ diff.file }}</div>
+            <div class="meta"><a id="diff-{{ loop.index }}" onclick="this.parentNode.parentNode.parentNode.children[1].style.display='block';">{{ diff.file }}</div>
 
             <div class="btn-group pull-right">
                 <a href="{{ path('commits', {repo: repo, commitishPath: commit.hash ~ '/' ~ diff.file}) }}" class="btn btn-small"><i class="icon-list-alt"></i> History</a>
