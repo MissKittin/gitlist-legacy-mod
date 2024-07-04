@@ -9,6 +9,12 @@ body {
         -o-filter: invert(100%);
         -ms-filter: invert(100%);
     }
+    .source-view .source-diff .old {
+        background-color: #dfd;
+    }
+    .source-view .source-diff .new {
+        background-color: #fdd;
+    }
 }
 
 @media(scripting: none) {
