@@ -23,7 +23,11 @@ $(function () {
     var md_content = $('#md-content');
 
     if (md_content.length) {
-        var converter = new showdown.Converter({ tables: true, strikethrough: true });
+        var converter = new showdown.Converter({
+            tables: true,
+            strikethrough: true,
+            ghCompatibleHeaderId: true
+        });
         md_content.html(converter.makeHtml(md_content.text()));
     }
 
