@@ -30,6 +30,7 @@ Also, the GitList gorgeous interface was made possible due to [Bootstrap](https:
 * Added pre for Markdown if JavaScript is disabled
 * All commit diffs are hidden
 * Enabled github compatible header id in Showdown
+* `public/themes` renamed to `_themes_`
 
 ## Original version
 If you want the original build, see the Initial commit (`d62df2a047a00eb187e4a03237eeb8dd24c3f8e1`)  
