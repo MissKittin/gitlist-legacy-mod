@@ -20,7 +20,7 @@ Also, the GitList gorgeous interface was made possible due to [Bootstrap](https:
 * README.md has priority
 * Added preload script
 * Added router script
-* Added assets cache for PHP CLI server
+* Added assets cache and compression for PHP CLI server
 * Added local avatar provider
 * Added dark theme
 * Added smaller tabs CSS tweak
@@ -29,6 +29,7 @@ Also, the GitList gorgeous interface was made possible due to [Bootstrap](https:
 * Added Browse code button in commits list
 * Added pre for Markdown if JavaScript is disabled
 * All commit diffs are hidden
+* Enabled github compatible header id in Showdown
 
 ## Original version
 If you want the original build, see the Initial commit (`d62df2a047a00eb187e4a03237eeb8dd24c3f8e1`)  
