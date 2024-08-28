@@ -5,6 +5,41 @@ if (substr($_SERVER['REQUEST_URI'], 0, 10) === '/_avatars_' && ! is_file(substr(
     exit();
 }
 
+if (isset($_GET['raw']) && $_GET['raw'] === 'true') {
+    $pos = strpos($_SERVER['REQUEST_URI'], '/blob/');
+
+    if ($pos !== false) {
+        header(
+            'Location: '.substr_replace(strtok($_SERVER['REQUEST_URI'], '?'), '/raw/', $pos, 6),
+            true,
+            301
+        );
+
+        exit();
+    }
+
+    $default_branch = 'master';
+
+    if (is_file(__DIR__.'/config.ini')) {
+        $config = parse_ini_file(__DIR__.'/config.ini');
+    }
+
+    if (isset($config['default_branch'])) {
+        $default_branch = $config['default_branch'];
+    }
+
+    $raw_path = explode('/', strtok($_SERVER['REQUEST_URI'], '?'));
+    $raw_path[1] .= '/raw/'.$default_branch;
+
+    header(
+        'Location: '.implode($raw_path, '/'),
+        true,
+        301
+    );
+
+    exit();
+}
+
 if (is_file(substr(strtok($_SERVER['REQUEST_URI'], '?'), 1)) && basename($_SERVER['SCRIPT_NAME']) !== '.htaccess') {
     $compress=false;
 
