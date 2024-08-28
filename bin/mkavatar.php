@@ -14,12 +14,12 @@ foreach (['default.png', '40.png', '32.png'] as $file) {
 
 $hash=md5(strtolower($argv[1]));
 
-mkdir(__DIR__.'/../public/avatars/'.$hash);
+mkdir(__DIR__.'/../public/_avatars_/'.$hash);
 
 foreach (['default.png', '40.png', '32.png'] as $file) {
-    copy($argv[2].'/'.$file, __DIR__.'/../public/avatars/'.$hash.'/'.$file);
+    copy($argv[2].'/'.$file, __DIR__.'/../public/_avatars_/'.$hash.'/'.$file);
 }
 
-file_put_contents(__DIR__.'/../public/avatars/'.$hash.'/who.txt', $argv[1]."\n");
+file_put_contents(__DIR__.'/../public/_avatars_/'.$hash.'/who.txt', $argv[1]."\n");
 
 echo $argv[1].' '.$hash.PHP_EOL;

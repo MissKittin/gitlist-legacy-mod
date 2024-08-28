@@ -17,7 +17,7 @@
 
 		cd /var/www
 		chmod 644 public/.htaccess
-		chmod 644 public/avatars/.htaccess
+		chmod 644 public/_avatars_/.htaccess
 
 * Configure the webserver to point to the `/var/www/public` directory as document root
 
@@ -44,12 +44,12 @@ Run:
 ```
 php /var/www/gitlist/bin/mkavatar.php "my-email@domain.com" ./new-directory
 ```
-Set `url = '//gravatar.com/avatar/'` to `url = '/avatars/'` in `config.ini` (`[avatar]` section).
+Set `url = '//gravatar.com/avatar/'` to `url = '/_avatars_/'` in `config.ini` (`[avatar]` section).
 
 
 # Webserver configuration
 Apache is the "default" webserver for GitList.  
-You will find the configuration inside the `public/.htaccess` and `public/avatars/.htaccess` files.  
+You will find the configuration inside the `public/.htaccess` and `public/_avatars_/.htaccess` files.  
 However, nginx and lighttpd are also supported.
 
 ### nginx server.conf
@@ -74,7 +74,7 @@ server {
     location / {
         try_files $uri @gitlist;
     }
-    location /avatars {
+    location /_avatars_ {
         try_files $uri @avatars;
     }
 
@@ -103,7 +103,7 @@ server {
         rewrite ^/.*$ /index.php;
     }
     location @avatars {
-        rewrite ^/.*$ /avatars/index.php;
+        rewrite ^/.*$ /_avatars_/index.php;
     }
 }
 ```
@@ -115,7 +115,7 @@ server.document-root        = "/var/www/public"
 
 url.rewrite-once = (
     "^/favicon\.ico$" => "$0",
-    "^/avatars/(/[^\?]*)(\?.*)?" => "/avatars/index.php$1$2"
+    "^/_avatars_/(/[^\?]*)(\?.*)?" => "/_avatars_/index.php$1$2"
     "^/(/[^\?]*)(\?.*)?" => "/index.php$1$2"
 )
 ```
@@ -125,7 +125,7 @@ url.rewrite-once = (
 UrlToolkit {
     ToolkitID = gitlist
     RequestURI isfile Return
-    Match ^/avatars/.* Rewrite /avatars/index.php
+    Match ^/_avatars_/.* Rewrite /_avatars_/index.php
     Match ^/.* Rewrite /index.php
 }
 ```
