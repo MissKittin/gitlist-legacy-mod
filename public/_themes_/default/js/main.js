@@ -18,6 +18,11 @@ $(function () {
                 return '<a name="L'+ ln +'"></a><a href="#L'+ ln +'">'+ ln +'</a>';
             }
         });
+
+        document.getElementsByClassName('source-header')[0].children[1].innerHTML += '<a href="#" class="btn btn-small"><i class="icon-list-alt"></i> Expand source</a>';
+        document.getElementsByClassName('source-header')[0].children[1].children[4].addEventListener('click', function() {
+            viewer.execCommand('goDocEnd');
+        }, false);
     }
 
     var md_content = $('#md-content');
