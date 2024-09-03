@@ -93,4 +93,9 @@ if (is_file(substr(strtok($_SERVER['REQUEST_URI'], '?'), 1)) && basename($_SERVE
     return false;
 }
 
+if (isset($_SERVER['HTTP_ACCEPT_ENCODING']) && strpos($_SERVER['HTTP_ACCEPT_ENCODING'], 'gzip') !== false) {
+    header('Content-Encoding: gzip');
+    ob_start('ob_gzhandler');
+}
+
 require __DIR__.'/public/index.php';
