@@ -10,7 +10,7 @@
         <link rel="stylesheet" type="text/css" href="{{ app.request.basepath }}/_themes_/style.css">
         <link rel="shortcut icon" type="image/png" href="{{ app.request.basepath }}/_themes_/favicon.png" />
         <!--[if lt IE 9]>
-        <script type="application/javascript" src="{{ app.request.basepath }}/_themes_/{{ theme }}/js/html5.js"></script>
+        <script type="application/javascript" src="{{ app.request.basepath }}/_themes_/_common_/js/html5.js"></script>
         <![endif]-->
     </head>
 
@@ -18,13 +18,13 @@
         {% block body %}{% endblock %}
         {% block javascripts %}
         <script type="application/javascript" src="{{ app.request.basepath }}/_themes_/{{ theme }}/js/jquery.js"></script>
-        <script type="application/javascript" src="{{ app.request.basepath }}/_themes_/{{ theme }}/js/raphael.js"></script>
+        <script type="application/javascript" src="{{ app.request.basepath }}/_themes_/_common_/js/raphael.js"></script>
         <script type="application/javascript" src="{{ app.request.basepath }}/_themes_/{{ theme }}/js/bootstrap.js"></script>
-        <script type="application/javascript" src="{{ app.request.basepath }}/_themes_/{{ theme }}/js/codemirror.js"></script>
-        <script type="application/javascript" src="{{ app.request.basepath }}/_themes_/{{ theme }}/js/showdown.js"></script>
+        <script type="application/javascript" src="{{ app.request.basepath }}/_themes_/_common_/js/codemirror.js"></script>
+        <script type="application/javascript" src="{{ app.request.basepath }}/_themes_/_common_/js/showdown.js"></script>
         <script type="application/javascript" src="{{ app.request.basepath }}/_themes_/{{ theme }}/js/main.js"></script>
-        <script type="application/javascript" src="{{ app.request.basepath }}/_themes_/{{ theme }}/js/networkGraph.js"></script>
-        <script type="application/javascript" src="{{ app.request.basepath }}/_themes_/{{ theme }}/js/gitgraph.js"></script>
+        <script type="application/javascript" src="{{ app.request.basepath }}/_themes_/_common_/js/networkGraph.js"></script>
+        <script type="application/javascript" src="{{ app.request.basepath }}/_themes_/_common_/js/gitgraph.js"></script>
         <script type="application/javascript" src="{{ app.request.basepath }}/_themes_/{{ theme }}/js/draw.js"></script>
         {% endblock %}
     </body>
