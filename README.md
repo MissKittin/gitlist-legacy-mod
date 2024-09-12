@@ -49,6 +49,17 @@ In order to run GitList on your server, you'll need:
 ## Installation
 See [INSTALL](INSTALL.md)
 
+## Front-end libraries
+* Bootstrap `v3.3.7`
+* CodeMirror `2.32`
+* Font Awesome `4.7.0`
+* gitgraph.js
+* HTML5 Shiv `v3`
+* jQuery `v3.1.1`
+* List.js `1.1.1`
+* Raphaël `v2.1.0`
+* Showdown `v1.9.1`
+
 ## Author
 * [Klaus Silveira](http://www.klaussilveira.com) (Creator, developer)
 
