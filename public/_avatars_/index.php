@@ -1,41 +1,44 @@
 <?php
 
-chdir(__DIR__.'/..');
+chdir (__DIR__.'/..');
 
-$_GET['s']=filter_input(INPUT_GET, 's', FILTER_VALIDATE_INT);
+header ('Pragma: cache');
+header ('Cache-Control: max-age=31536000');
+
+$_GET['s'] = filter_input (INPUT_GET, 's', FILTER_VALIDATE_INT);
 
 if (! $_GET['s']) {
-    $_GET['s']='default';
+    $_GET['s'] = 'default';
 }
 
-$strtok=strtok($_SERVER['REQUEST_URI'], '?');
+$strtok = strtok ($_SERVER['REQUEST_URI'], '?');
 
-if (! file_exists('.'.$strtok)) {
-    $dirname=dirname($strtok);
+if (! file_exists ('.'.$strtok)) {
+    $dirname = dirname ($strtok);
 
-    while (! file_exists('./'.$dirname.'/default')) {
-        $dirname=dirname($dirname);
+    while (! file_exists ('./'.$dirname.'/default')) {
+        $dirname = dirname ($dirname);
     }
 
-    if (! file_exists(__DIR__.'/default/'.$_GET['s'].'.png'))
-        $_GET['s']='default';
+    if (! file_exists (__DIR__.'/default/'.$_GET['s'].'.png'))
+        $_GET['s'] = 'default';
 
-    header(
+    header (
         'Location: '.$dirname.'/default/'.$_GET['s'].'.png',
         true,
         301
     );
 
-    exit();
+    exit ();
 }
 
-$slash='/';
+$slash = '/';
 
-if (substr($strtok, -1) === '/') {
-    $slash='';
+if (substr ($strtok, -1) === '/') {
+    $slash = '';
 }
 
-header(
+header (
     'Location: '.$strtok.$slash.$_GET['s'].'.png',
     true,
     301
