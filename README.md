@@ -31,7 +31,7 @@ Also, the GitList gorgeous interface was made possible due to [Bootstrap](https:
 * All commit diffs are hidden
 * Enabled github compatible header id in Showdown
 * `public/themes` renamed to `_themes_`
-* Added support for `?raw=true` (only PHP CLI server)
+* Added support for `?raw=true`
 * Added Expand source button
 * Files have been deduplicated
 * Removed references to `fonts.googleapis.com`
