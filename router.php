@@ -1,8 +1,11 @@
 <?php
 
-if (substr($_SERVER['REQUEST_URI'], 0, 10) === '/_avatars_' && ! is_file(substr(strtok($_SERVER['REQUEST_URI'], '?'), 1))) {
-    require __DIR__.'/public/_avatars_/index.php';
-    exit();
+if (file_exists(__DIR__.'/router.php.d')) {
+    foreach (array_diff(scandir(__DIR__.'/router.php.d'), ['.', '..']) as $_routerScript) {
+        require __DIR__.'/router.php.d/'.$_routerScript;
+    }
+
+    unset($_routerScript);
 }
 
 if (isset($_GET['raw']) && $_GET['raw'] === 'true') {
