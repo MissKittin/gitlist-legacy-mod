@@ -38,6 +38,7 @@ Also, the GitList gorgeous interface was made possible due to [Bootstrap](https:
 * Hidden description box if description file is empty
 * Hidden repo search box if JavaScript is disabled
 * Added ability to configure via PHP script
+* Added repository list cache
 
 ## Original version
 If you want the original build, see the Initial commit (`d62df2a047a00eb187e4a03237eeb8dd24c3f8e1`)  

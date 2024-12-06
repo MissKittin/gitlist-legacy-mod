@@ -19,6 +19,7 @@ return array(
     ),
     'app' => array(
         'cache' => CONFIG_INI_FALSE,
+        'cache_homepage' => CONFIG_INI_FALSE, // Remove cache/index.html to refresh
         'theme' => 'default',
         'title' => ''
     ),

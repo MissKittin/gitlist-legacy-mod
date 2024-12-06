@@ -14,6 +14,7 @@ strip_dot_git = false ; Remove usual bare repo .git extension from displayed nam
 
 [app]
 cache = false
+cache_homepage = false ; Remove cache/index.html to refresh
 theme = "default"
 title = ""
 

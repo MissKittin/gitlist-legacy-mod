@@ -9,16 +9,38 @@ use Symfony\Component\HttpFoundation\Response;
 
 class MainController implements ControllerProviderInterface
 {
+    protected $app;
+    protected $config;
+
+    public function __construct(Application $app, \GitList\Config $config)
+    {
+        $this->app=$app;
+        $this->config=$config;
+    }
+
+    protected function homepageCache($twig)
+    {
+        if ($this->config->get('app', 'cache') === '1' && $this->config->get('app', 'cache_homepage') === '1') {
+            file_put_contents($this->app->getCachePath().'index.html', $twig);
+        }
+
+        return $twig;
+    }
+
     public function connect(Application $app)
     {
         $route = $app['controllers_factory'];
 
         $route->get('/', function () use ($app) {
+            if ($this->config->get('app', 'cache') === '1' && $this->config->get('app', 'cache_homepage') === '1' && file_exists($this->app->getCachePath().'index.html')) {
+                return file_get_contents($this->app->getCachePath().'index.html');
+            }
+
             $repositories = $app['git']->getRepositories($app['git.repos']);
 
-            return $app['twig']->render('index.twig', array(
+            return $this->homepageCache($app['twig']->render('index.twig', array(
                 'repositories' => $repositories,
-            ));
+            )));
         })->bind('homepage');
 
         $route->get('/refresh', function (Request $request) use ($app) {

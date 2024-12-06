@@ -13,6 +13,7 @@
 		chgrp www-data cache
 		chmod 770 cache
 
+* You can also enable the repository list cache (`cache_homepage = true`). To invalidate the cache, remove `cache/index.html`.
 * Set file permissions for `.htaccess`:
 
 		cd /var/www
