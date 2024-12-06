@@ -35,6 +35,7 @@ Also, the GitList gorgeous interface was made possible due to [Bootstrap](https:
 * Added Expand source button
 * Files have been deduplicated
 * Removed references to `fonts.googleapis.com`
+* Hidden description box if description file is empty
 
 ## Original version
 If you want the original build, see the Initial commit (`d62df2a047a00eb187e4a03237eeb8dd24c3f8e1`)  

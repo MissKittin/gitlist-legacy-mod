@@ -12,10 +12,11 @@
     <div class="list">
         {% for repository in repositories %}
         <div class="repository">
-            <div class="repository-header">
+            <div class="repository-header"{% if repository.description is not null and repository.description is empty %} style="border-bottom: none;"{% endif %}>
                 <i class="icon-folder-open icon-spaced"></i> <a href="{{ path('repository', {repo: repository.name}) }}"><span class="name">{{ repository.name }}</span></a>
                 <a href="{{ path('rss', {repo: repository.name, branch: 'master'}) }}"><i class="rss pull-right"></i></a>
             </div>
+            {% if repository.description is null or repository.description is not empty %}
             <div class="repository-body">
                 {% if repository.description %}
                 <p>{{ repository.description }}</p>
@@ -23,11 +24,12 @@
                 <p>There is no repository description file. Please, create one to remove this message.</p>
                 {% endif %}
             </div>
+            {% endif %}
         </div>
         {% endfor %}
     </div>
 
-    <hr />
+    <!-- <hr /> -->
 
     {% include 'footer.twig' %}
 </div>
