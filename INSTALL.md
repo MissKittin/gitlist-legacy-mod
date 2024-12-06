@@ -1,6 +1,18 @@
 # GitList installation
-* If you want to install GitList in `/var/www`, clean this directory first
-* Clone this repository to target directory:
+* If you want to install GitList in `/var/www`, clean this directory first  
+	if you are using Apache, configure the public directory to `/var/www/public` and disable ignoring `.htaccess` files:
+
+		# in /etc/apache2/sites-available/000-default.conf
+		DocumentRoot /var/www/public
+
+		# in /etc/apache2/apache2.conf
+		<Directory /var/www/>
+			#something
+			AllowOverride All
+			#something
+		</Directory>
+
+* Download zipball or clone this repository to target directory:
 
 		git clone --depth 1 "https://github.com/MissKittin/gitlist-legacy-mod.git" /var/www
 
@@ -56,9 +68,20 @@ php /var/www/gitlist/bin/mkavatar.php "my-email@domain.com" ./new-directory
 ```
 Set `url = '//gravatar.com/avatar/'` to `url = '/_avatars_/'` in `config.ini` (`[avatar]` section).
 
+### Updating GitList
+If you want to be able to update GitList, your only option is to clone the repository.  
+All you need to do is execute the command from time to time (e.g. via cron):
+```
+git -C /var/www pull --ff-only
+# optionally you can
+git -C /var/www reset --hard
+```
+but be careful: if you do `git clean `, you will lose your configuration files.
+
 
 # Webserver configuration
 Apache is the "default" webserver for GitList.  
+You need to `a2enmod rewrite`  
 You will find the configuration inside the `public/.htaccess` and `public/_avatars_/.htaccess` files.  
 However, nginx and lighttpd are also supported.
 
@@ -89,15 +112,15 @@ server {
     }
 
     location ~ \.php$ {
+		include snippets/fastcgi-php.conf;
+
         # if you're using php5-fpm via tcp
         fastcgi_pass 127.0.0.1:9000;
 
         # if you're using php5-fpm via socket
-        #fastcgi_pass unix:/var/run/php5-fpm.sock;
-
-        include /etc/nginx/fastcgi_params;
+        #fastcgi_pass unix:/var/run/php/php5-fpm.sock;
     }
-    location ~* \.(js|css|png|jpg|jpeg|gif|ico)$ {
+    location ~* \.(css|js|ttf|otf|svg|eot|woff|woff2|png|gif)$ {
         add_header Vary "Accept-Encoding";
         expires max;
         try_files $uri @gitlist;
@@ -119,23 +142,18 @@ server {
 ```
 
 ### lighttpd
+You need to `lighttpd-enable-mod fastcgi-php-fpm`  
+and `lighttpd-enable-mod redirect`
+
 ```
 # GitList is located in /var/www
-server.document-root        = "/var/www/public"
+server.document-root = "/var/www/public"
 
-url.rewrite-once = (
-    "^/favicon\.ico$" => "$0",
-    "^/_avatars_/(/[^\?]*)(\?.*)?" => "/_avatars_/index.php$1$2"
-    "^/(/[^\?]*)(\?.*)?" => "/index.php$1$2"
+url.rewrite-if-not-file = (
+    "^/_avatars_/(.*)" => "/_avatars_/index.php/$1"
 )
-```
-
-### hiawatha (not tested)
-```
-UrlToolkit {
-    ToolkitID = gitlist
-    RequestURI isfile Return
-    Match ^/_avatars_/.* Rewrite /_avatars_/index.php
-    Match ^/.* Rewrite /index.php
-}
+url.rewrite-once = (
+    "^/_themes_/(.*)" => "/_themes_/$1",
+    "^/(?!_avatars_).*" => "/index.php/$1"
+)
 ```
