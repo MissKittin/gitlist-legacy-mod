@@ -13,6 +13,26 @@ if (! $_GET['s']) {
 
 $strtok = strtok ($_SERVER['REQUEST_URI'], '?');
 
+if (substr ($strtok, -10) === '/index.php') {
+    $strtok = substr ($strtok, 0, -9);
+}
+
+if (basename($strtok) === basename  (dirname (__FILE__))) {
+    $basename = '';
+
+    if (substr($strtok, -1) !== '/') {
+        $basename = basename (dirname (__FILE__)).'/';
+    }
+
+    header (
+        'Location: '.$basename.'default/default.png',
+        true,
+        301
+    );
+
+    exit ();
+}
+
 if (! file_exists ('.'.$strtok)) {
     $dirname = dirname ($strtok);
 
