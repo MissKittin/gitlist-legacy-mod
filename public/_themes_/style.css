@@ -18,6 +18,9 @@ body {
 }
 
 @media(scripting: none) {
+    #search-repos {
+        display: none;
+    }
     #md-content {
         white-space: pre;
     }
