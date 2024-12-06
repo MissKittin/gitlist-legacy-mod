@@ -35,9 +35,10 @@ if (isset($_GET['raw']) && $_GET['raw'] === 'true') {
 
     if (isset($raw_path[2]) && preg_match('/^[0-9a-f]{40}$/i', $raw_path[2]) === 1) {
         $raw_path[1] .= '/raw';
-    }
-    else {
-        if (is_file(__DIR__.'/config.ini')) {
+    } else {
+        if (is_file(__DIR__.'/config.php')) {
+            $config = require __DIR__.'/config.php';
+        } elseif (is_file(__DIR__.'/config.ini')) {
             $config = parse_ini_file(__DIR__.'/config.ini');
         }
 

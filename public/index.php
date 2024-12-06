@@ -13,7 +13,11 @@ chdir(__DIR__.'/..');
 
 require 'vendor/autoload.php';
 
-$config = GitList\Config::fromFile('config.ini');
+if (file_exists('./config.php')) {
+    $config = GitList\Config::fromPhpFile('./config.php');
+} else {
+    $config = GitList\Config::fromFile('config.ini');
+}
 
 if (($config->get('app', 'cache') === '1') && (!is_writable('.' . DIRECTORY_SEPARATOR . 'cache'))) {
     die(sprintf('The "%s" folder must be writable for GitList to run.', __DIR__ . DIRECTORY_SEPARATOR . 'cache'));

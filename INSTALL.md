@@ -21,6 +21,15 @@
 
 * Configure the webserver to point to the `/var/www/public` directory as document root
 
+### Configuration via PHP script
+Instead of `config.ini` you can use `config.php`.  
+The advantage of this solution is the ability to cache the configuration via OPcache.  
+The `config.php` file always takes precedence over the `config.ini`.  
+If you set OPcache to not check if php files have been modified, it will always load compiled code - and that's the point.
+
+* Rename the `config-example.php` file to `config.php`.
+* Open up the `config.php` and configure your installation. You'll have to provide where your repositories are located.
+
 ### Preloading
 Add to `php.ini` file in `[opcache]` section:
 ```

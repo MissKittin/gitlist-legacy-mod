@@ -23,6 +23,13 @@ class Config
 
         return $config;
     }
+    public static function fromPhpFile($file)
+    {
+        $config = new static(require $file);
+        $config->validateOptions();
+
+        return $config;
+    }
 
     public function get($section, $option)
     {
