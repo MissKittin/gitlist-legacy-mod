@@ -20,8 +20,9 @@ $(function () {
         });
 
         document.getElementsByClassName('source-header')[0].children[1].innerHTML += '<a href="#" class="btn btn-default btn-sm"><span class="fa fa-list"></span> Expand source</a>';
-        document.getElementsByClassName('source-header')[0].children[1].children[4].addEventListener('click', function() {
+        document.getElementsByClassName('source-header')[0].children[1].children[4].addEventListener('click', function (e) {
             viewer.execCommand('goDocEnd');
+            e.preventDefault();
         }, false);
     }
 
